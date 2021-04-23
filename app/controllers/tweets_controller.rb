@@ -7,7 +7,7 @@ class TweetsController < ApplicationController
 
     def show
         tweet = Tweet.find(params[:id])
-        render(json: {tweet: tweet})
+        render(json: {status: 200, tweet: tweet, replies: tweet.replies})
     end
 
     def create
