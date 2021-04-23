@@ -14,16 +14,21 @@ class TweetsController < ApplicationController
         tweet = Tweet.new(tweet_params)
 
         if tweet.save
-            render(status: 201, json: {tweet: tweet})
+            render(status: 201, json: {tweet: tweet}, status: 201)
         else
-            render(status: 422, json: {tweet: tweet, errors: song.errors})
+            render(json: {tweet: tweet, errors: song.errors}, status: 422, )
         end
     end
 
     def update
         tweet = Tweet.find(params[:id])
         tweet.update(tweet_params)
-        render(status: 200, json: {tweet: tweet})
+        render(json: {tweet: tweet})
+    end
+
+    def destroy
+        tweet = Tweet.destroy(params[:id])
+        render(status: 204)
     end
 
     private
